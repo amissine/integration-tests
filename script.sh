@@ -1,11 +1,13 @@
 # build container image
 docker build ./container -t container
 
-# TODO cache the image
+# install dependencies
+[ -d node_modules ] || npm install
 
 # download ngrok
-wget -nv https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-unzip ngrok-stable-linux-amd64.zip
+ZIP=ngrok-stable-linux-amd64.zip
+URL=https://bin.equinox.io/c/4VmDzA7iaHb/$ZIP
+[ -x ngrok ] || { wget -nv $URL && unzip $ZIP && rm $ZIP; }
 
 # start ngrok
 export FI1_SUBDOMAIN=stellarfi$(openssl rand -hex 5)
