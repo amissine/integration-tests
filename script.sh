@@ -1,9 +1,6 @@
 # build container image
 docker build ./container -t container
 
-# install dependencies
-# [ -d node_modules ] || npm install
-
 # download ngrok
 ZIP=ngrok-stable-linux-amd64.zip
 URL=https://bin.equinox.io/c/4VmDzA7iaHb/$ZIP
