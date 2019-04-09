@@ -99,5 +99,5 @@ app.post('/tests', function (req, res) {
 });
 
 app.listen(process.env.FI_PORT, function () {
-  console.log('Server listening!')
+  console.log('Server listening! SIGNING_ACCOUNT:', process.env.SIGNING_ACCOUNT)
 });
