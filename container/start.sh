@@ -12,7 +12,7 @@ export COMPLIANCE_EXTERNAL_PORT=8001
 export COMPLIANCE_INTERNAL_PORT=8002
 export FI_PORT=8003
 
-function download_bridge() {
+function download_all() {
   if [ "$BRIDGE_VERSION" == "master" ]
   then
     export MONOREPO=$GOPATH/src/github.com/stellar/go
@@ -38,7 +38,7 @@ function download_bridge() {
   chmod +x ./bridge ./compliance
 }
 
-function config_bridge() {
+function config_all() {
   export DATABASE_URL=postgres://postgres@db/bridge?sslmode=disable
   sed -i "s#{DATABASE_URL}#${DATABASE_URL}#g" bridge.cfg
   sed -i "s/{BRIDGE_PORT}/${BRIDGE_PORT}/g" bridge.cfg
@@ -56,7 +56,7 @@ function config_bridge() {
   sed -i "s/{FI_PORT}/${FI_PORT}/g" compliance.cfg
 }
 
-function init_bridge_dbs() {
+function init_all_dbs() {
   # Wait for postgres to start
   until psql -h db -U postgres -c '\l'; do
     echo "Waiting for postgres..."
@@ -86,9 +86,9 @@ function start() {
 
 if [ ! -f _created ]
 then
-  download_bridge
-  config_bridge
-  init_bridge_dbs
+  download_all
+  config_all
+  init_all_dbs
   init_fi_server
   touch _created
 else
