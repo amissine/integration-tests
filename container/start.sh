@@ -45,6 +45,7 @@ function config_all() {
   sed -i "s/{ISSUING_ACCOUNT}/${ISSUING_ACCOUNT}/g" bridge.cfg
   sed -i "s/{RECEIVING_ACCOUNT}/${RECEIVING_ACCOUNT}/g" bridge.cfg
   sed -i "s/{RECEIVING_SEED}/${RECEIVING_SEED}/g" bridge.cfg
+  sed -i "s/{AUTHORIZING_SEED}/${AUTHORIZING_SEED}/g" bridge.cfg
   sed -i "s/{COMPLIANCE_INTERNAL_PORT}/${COMPLIANCE_INTERNAL_PORT}/g" bridge.cfg
   sed -i "s/{FI_PORT}/${FI_PORT}/g" bridge.cfg
 
@@ -56,7 +57,8 @@ function config_all() {
   sed -i "s/{FI_PORT}/${FI_PORT}/g" compliance.cfg
 }
 
-function init_all_dbs() {
+# Drop function init_fi_server()
+function init_all() {
   # Wait for postgres to start
   until psql -h db -U postgres -c '\l'; do
     echo "Waiting for postgres..."
@@ -72,9 +74,8 @@ function init_all_dbs() {
 
   ./bridge --migrate-db
   ./compliance --migrate-db
-}
 
-function init_fi_server() {
+  echo "Starting 'npm install' in $(pwd)"
   npm install
 }
 
@@ -88,8 +89,7 @@ if [ ! -f _created ]
 then
   download_all
   config_all
-  init_all_dbs
-  init_fi_server
+  init_all
   touch _created
 else
   # Wait for a DB to start
