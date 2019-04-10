@@ -11,6 +11,9 @@ export FI1_SUBDOMAIN=stellarfi$(openssl rand -hex 5)
 export FI2_SUBDOMAIN=stellarfi$(openssl rand -hex 5)
 
 cp ngrok.tpl.yml ngrok.yml
+
+echo NGROK_AUTH_TOKEN ${NGROK_AUTH_TOKEN}
+
 sed -i "s/{NGROK_AUTH_TOKEN}/${NGROK_AUTH_TOKEN}/g" ngrok.yml
 sed -i "s/{FI1_SUBDOMAIN}/${FI1_SUBDOMAIN}/g" ngrok.yml
 sed -i "s/{FI2_SUBDOMAIN}/${FI2_SUBDOMAIN}/g" ngrok.yml
