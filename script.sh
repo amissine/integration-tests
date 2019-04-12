@@ -1,7 +1,7 @@
 # build container image
 docker build ./container -t container
 
-# No ngrok
+# No ngrok {{{1
 ## download ngrok
 #ZIP=ngrok-stable-linux-amd64.zip
 #URL=https://bin.equinox.io/c/4VmDzA7iaHb/$ZIP
@@ -18,12 +18,11 @@ docker build ./container -t container
 #sed -i "s/{FI2_SUBDOMAIN}/${FI2_SUBDOMAIN}/g" ngrok.yml
 #
 #./ngrok start --config ./ngrok.yml --all --log=stdout > ngrok.log &
+# }}}1
 
 # build cluster
 export FI1_DOMAIN=${FI1_SUBDOMAIN}.ngrok.io
 export FI2_DOMAIN=${FI2_SUBDOMAIN}.ngrok.io
 
 docker-compose up &
-
-# start monitoring app
 node monitor.js

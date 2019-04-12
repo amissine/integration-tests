@@ -55,7 +55,6 @@ app.post('/receive', function (req, res) {
   test.onReceive(req, res);
 });
 
-
 // sanctions callback
 app.post('/sanctions', function (req, res) {
   console.log("/sanctions callback: "+JSON.stringify(req.body));
@@ -99,5 +98,5 @@ app.post('/tests', function (req, res) {
 });
 
 app.listen(process.env.FI_PORT, function () {
-  console.log('Server listening! SIGNING_ACCOUNT:', process.env.SIGNING_ACCOUNT)
+  console.log('FI', process.env.FI_PORT)
 });

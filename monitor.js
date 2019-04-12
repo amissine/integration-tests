@@ -3,7 +3,6 @@
 // * If there is a failure it exits with `1` error code.
 // * If tests haven't finished in a defined timeout, it exits with `2` error code.
 var axios = require('axios');
-var querystring = require('querystring');
 var fis = [
   {
     url: "http://localhost:8000/tests",
@@ -13,6 +12,7 @@ var fis = [
   {
     url: "http://localhost:9000/tests",
     online: false,
+    prefix: 'FI2 ',
     tests: null
   }
 ];
@@ -81,9 +81,9 @@ setInterval(checkStatus, 5000);
 // Helper functions
 function getTestsStatus(fi) {
   return axios.get(fi.url)
-    .then(function(response) {
+    .then(response => {
       fi.online = true;
-      fi.tests = response.data;
+      fi.tests = response.data; // "tests":{"credit_payment":"pending","pending":"pending","xlm_payment":"pending"}
     })
     .catch(function (response) {
       log("Monitor: Waiting for FIs to go online.");
@@ -97,5 +97,5 @@ function log(msg) {
   if (typeof msg === 'object') {
     msg = JSON.stringify(msg);
   }
-  console.log("monitor     | "+msg)
+  console.log("monitor      | "+msg)
 }
