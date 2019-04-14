@@ -1,7 +1,7 @@
 set -e
 
 apt-get update
-apt-get install -y git mercurial gcc curl postgresql openssl
+apt-get install -y git mercurial gcc curl postgresql openssl make g++
 
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
 

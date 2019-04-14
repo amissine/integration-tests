@@ -82,9 +82,11 @@ function init_all() {
 }
 
 function start() {
-  node index.js &
   ./bridge -c bridge.cfg &
-  ./compliance -c compliance.cfg
+  ./compliance -c compliance.cfg &
+  sleep 10
+  ps -ef
+  node index.js
 }
 
 if [ ! -f _created ]

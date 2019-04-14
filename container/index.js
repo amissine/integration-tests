@@ -1,6 +1,5 @@
 require("babel/register");
 var _ = require('lodash');
-var querystring = require('querystring');
 var express = require('express');
 var proxy = require('express-http-proxy');
 var app = express();
@@ -23,6 +22,7 @@ const stellarToml = '# Stellar.toml\n'+
 
 // stellar.toml
 app.get('/.well-known/stellar.toml', function (req, res) {
+  console.log('get stellar.toml', req, res)
   res.set('Content-Type', 'text/x-toml');
   res.set('Access-Control-Allow-Origin', '*');
   res.send(stellarToml);
@@ -54,6 +54,9 @@ app.post('/receive', function (req, res) {
   let test = tests[req.body.route];
   test.onReceive(req, res);
 });
+
+// error callback
+app.post('/error', (req, res) => console.error('error callback', req, res))
 
 // sanctions callback
 app.post('/sanctions', function (req, res) {

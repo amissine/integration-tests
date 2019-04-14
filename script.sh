@@ -8,8 +8,8 @@ docker build ./container -t container
 #[ -x ngrok ] || { wget -nv $URL && unzip $ZIP && rm $ZIP; }
 #
 ## start ngrok
-#export FI1_SUBDOMAIN=stellarfi$(openssl rand -hex 5)
-#export FI2_SUBDOMAIN=stellarfi$(openssl rand -hex 5)
+export FI1_SUBDOMAIN=stellarfi$(openssl rand -hex 5)
+export FI2_SUBDOMAIN=stellarfi$(openssl rand -hex 5)
 #export NGROK_AUTH_TOKEN=4yYkPvgmcyEf8JkKLC6m8_7sfHxzF1knmTubyWiNpWa
 #
 #cp ngrok.tpl.yml ngrok.yml
@@ -21,8 +21,8 @@ docker build ./container -t container
 # }}}1
 
 # build cluster
-export FI1_DOMAIN=${FI1_SUBDOMAIN}.ngrok.io
-export FI2_DOMAIN=${FI2_SUBDOMAIN}.ngrok.io
+export FI1_DOMAIN=${FI1_SUBDOMAIN}.fist.io
+export FI2_DOMAIN=${FI2_SUBDOMAIN}.fist.io
 
 docker-compose up &
 node monitor.js

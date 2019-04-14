@@ -17,7 +17,7 @@ export class Test {
   }
 
   printError(error) {
-    console.error(this.testName+" error: "+error)
+    console.error(this.testName, error)
   }
 
   getStatus() {
@@ -93,6 +93,7 @@ export class Test {
 
   // `memo` should always equal `this.testName`
   getFederation(req, res) {
+    console.log('getFederation', req, res)
     res.send({
       account_id: process.env.RECEIVING_ACCOUNT,
       memo_type: "text",
