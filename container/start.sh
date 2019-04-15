@@ -10,7 +10,7 @@ nvm install 6.9
 
 # env
 export BRIDGE_PORT=8000
-export COMPLIANCE_EXTERNAL_PORT=8001
+export COMPLIANCE_EXTERNAL_PORT=80 # 8001
 export COMPLIANCE_INTERNAL_PORT=8002
 export FI_PORT=8003
 
@@ -82,6 +82,7 @@ function init_all() {
 }
 
 function start() {
+  ifconfig; cat /etc/hosts; echo "FI_DOMAIN=$FI_DOMAIN"
   ./bridge -c bridge.cfg &
   ./compliance -c compliance.cfg &
   sleep 10
