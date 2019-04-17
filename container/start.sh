@@ -19,7 +19,8 @@ function download_all() {
   then
     export MONOREPO=$GOPATH/src/github.com/stellar/go
     mkdir -p $MONOREPO
-    git clone https://github.com/stellar/go $MONOREPO
+    #git clone https://github.com/stellar/go $MONOREPO
+    git clone https://github.com/amissine/go $MONOREPO
     cd $MONOREPO
     dep ensure -v
     go build -v ./services/bridge

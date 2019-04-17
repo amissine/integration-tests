@@ -17,7 +17,7 @@ export class Test {
   }
 
   printError(error) {
-    console.error(this.testName, error)
+    console.error(this.testName, error.response.data)
   }
 
   getStatus() {

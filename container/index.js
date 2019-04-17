@@ -55,8 +55,8 @@ app.post('/receive', function (req, res) {
   test.onReceive(req, res);
 });
 
-// error callback
-app.post('/error', (req, res) => console.error('error callback', req, res))
+// TODO: error callback
+//app.post('/error', (req, res) => console.error('error callback', req, res.data))
 
 // sanctions callback
 app.post('/sanctions', function (req, res) {
