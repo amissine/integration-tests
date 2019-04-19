@@ -10,7 +10,7 @@ endif
 set shortmess=aoO
 badd +13 .travis.yml
 badd +1 script.sh
-badd +17 container/Dockerfile
+badd +13 container/Dockerfile
 badd +1 container/dependencies.sh
 badd +1 container/start.sh
 badd +86 monitor.js
@@ -21,15 +21,17 @@ badd +1 ngrok.yml
 badd +1 docker-compose.yml
 badd +1 container2.env
 badd +1 container/compliance.cfg
-badd +22 container/bridge.cfg
+badd +23 container/bridge.cfg
 badd +7 local.sh
-badd +22 container/tests/credit_payment_test.js
+badd +20 container/tests/credit_payment_test.js
 badd +1 container/tests/test.js
 badd +8 container/package.json
 badd +8 container/checkAccount.js
 badd +1 createAccount.js
-badd +21 checkAccount.js
-badd +11 package.json
+badd +1 checkAccount.js
+badd +9 package.json
+badd +1 .notravis.yml
+badd +18 https-proxy.js
 argglobal
 silent! argdel *
 $argadd .travis.yml
@@ -42,7 +44,10 @@ wincmd _ | wincmd |
 split
 wincmd _ | wincmd |
 split
-3wincmd k
+wincmd _ | wincmd |
+split
+4wincmd k
+wincmd w
 wincmd w
 wincmd w
 wincmd w
@@ -50,10 +55,11 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe '1resize ' . ((&lines * 11 + 24) / 48)
-exe '2resize ' . ((&lines * 14 + 24) / 48)
-exe '3resize ' . ((&lines * 11 + 24) / 48)
-exe '4resize ' . ((&lines * 6 + 24) / 48)
+exe '1resize ' . ((&lines * 8 + 24) / 48)
+exe '2resize ' . ((&lines * 9 + 24) / 48)
+exe '3resize ' . ((&lines * 8 + 24) / 48)
+exe '4resize ' . ((&lines * 8 + 24) / 48)
+exe '5resize ' . ((&lines * 8 + 24) / 48)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -64,12 +70,31 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 4 - ((3 * winheight(0) + 5) / 11)
+let s:l = 4 - ((2 * winheight(0) + 4) / 8)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 4
-normal! 069|
+normal! 062|
+lcd ~/product/integration-tests
+wincmd w
+argglobal
+edit ~/product/integration-tests/.notravis.yml
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 17 - ((1 * winheight(0) + 4) / 9)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+17
+normal! 05|
 lcd ~/product/integration-tests
 wincmd w
 argglobal
@@ -83,7 +108,7 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 13 - ((8 * winheight(0) + 7) / 14)
+let s:l = 13 - ((5 * winheight(0) + 4) / 8)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -103,11 +128,11 @@ setlocal fdn=20
 setlocal fen
 4
 normal! zo
-let s:l = 24 - ((9 * winheight(0) + 5) / 11)
+let s:l = 25 - ((6 * winheight(0) + 4) / 8)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-24
+25
 normal! 021|
 lcd ~/product/integration-tests
 wincmd w
@@ -122,18 +147,19 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 2 - ((1 * winheight(0) + 3) / 6)
+let s:l = 3 - ((2 * winheight(0) + 4) / 8)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-2
-normal! 0
+3
+normal! 05|
 lcd ~/product/integration-tests
 wincmd w
-exe '1resize ' . ((&lines * 11 + 24) / 48)
-exe '2resize ' . ((&lines * 14 + 24) / 48)
-exe '3resize ' . ((&lines * 11 + 24) / 48)
-exe '4resize ' . ((&lines * 6 + 24) / 48)
+exe '1resize ' . ((&lines * 8 + 24) / 48)
+exe '2resize ' . ((&lines * 9 + 24) / 48)
+exe '3resize ' . ((&lines * 8 + 24) / 48)
+exe '4resize ' . ((&lines * 8 + 24) / 48)
+exe '5resize ' . ((&lines * 8 + 24) / 48)
 tabedit ~/product/integration-tests/container2.env
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -222,9 +248,9 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe '1resize ' . ((&lines * 13 + 24) / 48)
-exe '2resize ' . ((&lines * 12 + 24) / 48)
-exe '3resize ' . ((&lines * 18 + 24) / 48)
+exe '1resize ' . ((&lines * 14 + 24) / 48)
+exe '2resize ' . ((&lines * 15 + 24) / 48)
+exe '3resize ' . ((&lines * 14 + 24) / 48)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -235,12 +261,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 24 - ((1 * winheight(0) + 6) / 13)
+let s:l = 23 - ((6 * winheight(0) + 7) / 14)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-24
-normal! 05|
+23
+normal! 041|
 lcd ~/product/integration-tests
 wincmd w
 argglobal
@@ -254,11 +280,11 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 22 - ((4 * winheight(0) + 6) / 12)
+let s:l = 23 - ((6 * winheight(0) + 7) / 15)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-22
+23
 normal! 0
 lcd ~/product/integration-tests
 wincmd w
@@ -273,7 +299,7 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 9) / 18)
+let s:l = 1 - ((0 * winheight(0) + 7) / 14)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -281,9 +307,9 @@ normal! zt
 normal! 0
 lcd ~/product/integration-tests
 wincmd w
-exe '1resize ' . ((&lines * 13 + 24) / 48)
-exe '2resize ' . ((&lines * 12 + 24) / 48)
-exe '3resize ' . ((&lines * 18 + 24) / 48)
+exe '1resize ' . ((&lines * 14 + 24) / 48)
+exe '2resize ' . ((&lines * 15 + 24) / 48)
+exe '3resize ' . ((&lines * 14 + 24) / 48)
 tabedit ~/product/integration-tests/container/tests/index.js
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -329,12 +355,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 50 - ((7 * winheight(0) + 7) / 14)
+let s:l = 73 - ((6 * winheight(0) + 7) / 14)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-50
-normal! 05|
+73
+normal! 012|
 lcd ~/product/integration-tests
 wincmd w
 argglobal
@@ -348,33 +374,37 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 59 - ((13 * winheight(0) + 7) / 15)
+let s:l = 58 - ((11 * winheight(0) + 7) / 15)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-59
-normal! 075|
+58
+normal! 09|
 lcd ~/product/integration-tests
 wincmd w
 exe '1resize ' . ((&lines * 14 + 24) / 48)
 exe '2resize ' . ((&lines * 14 + 24) / 48)
 exe '3resize ' . ((&lines * 15 + 24) / 48)
-tabedit ~/product/integration-tests/checkAccount.js
+tabedit ~/product/integration-tests/https-proxy.js
 set splitbelow splitright
 wincmd _ | wincmd |
 split
 wincmd _ | wincmd |
 split
-2wincmd k
+wincmd _ | wincmd |
+split
+3wincmd k
+wincmd w
 wincmd w
 wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
-exe '1resize ' . ((&lines * 15 + 24) / 48)
-exe '2resize ' . ((&lines * 14 + 24) / 48)
-exe '3resize ' . ((&lines * 14 + 24) / 48)
+exe '1resize ' . ((&lines * 11 + 24) / 48)
+exe '2resize ' . ((&lines * 10 + 24) / 48)
+exe '3resize ' . ((&lines * 11 + 24) / 48)
+exe '4resize ' . ((&lines * 10 + 24) / 48)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -385,7 +415,26 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 7) / 15)
+let s:l = 1 - ((0 * winheight(0) + 5) / 11)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+lcd ~/product/integration-tests
+wincmd w
+argglobal
+edit ~/product/integration-tests/checkAccount.js
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 5) / 10)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -404,12 +453,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 20 - ((7 * winheight(0) + 7) / 14)
+let s:l = 21 - ((10 * winheight(0) + 5) / 11)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-20
-normal! 033|
+21
+normal! 03|
 lcd ~/product/integration-tests
 wincmd w
 argglobal
@@ -423,18 +472,18 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 22 - ((5 * winheight(0) + 7) / 14)
+let s:l = 20 - ((8 * winheight(0) + 5) / 10)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-22
-normal! 051|
+20
+normal! 05|
 lcd ~/product/integration-tests
 wincmd w
-2wincmd w
-exe '1resize ' . ((&lines * 15 + 24) / 48)
-exe '2resize ' . ((&lines * 14 + 24) / 48)
-exe '3resize ' . ((&lines * 14 + 24) / 48)
+exe '1resize ' . ((&lines * 11 + 24) / 48)
+exe '2resize ' . ((&lines * 10 + 24) / 48)
+exe '3resize ' . ((&lines * 11 + 24) / 48)
+exe '4resize ' . ((&lines * 10 + 24) / 48)
 tabnext 5
 set stal=1
 if exists('s:wipebuf')

@@ -83,7 +83,10 @@ function init_all() {
 }
 
 function start() {
-  ifconfig; cat /etc/hosts; echo "FI_DOMAIN=$FI_DOMAIN"
+  ifconfig; 
+  echo $PROXY $FI_DOMAIN >> /etc/hosts
+  echo $PROXY $OTHER_FI_DOMAIN >> /etc/hosts
+  cat /etc/hosts
   ./bridge -c bridge.cfg &
   ./compliance -c compliance.cfg &
   sleep 10
