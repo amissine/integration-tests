@@ -16,13 +16,13 @@ app.use('/auth', proxy('http://localhost:'+process.env.COMPLIANCE_EXTERNAL_PORT)
 app.use(bodyParser.urlencoded({extended: false}));
 
 const stellarToml = '# Stellar.toml\n'+
-  'FEDERATION_SERVER="https://'+process.env.FI_DOMAIN+'/federation"\n'+
-  'AUTH_SERVER="https://'+process.env.FI_DOMAIN+'/auth"\n'+
+  'FEDERATION_SERVER="http://'+process.env.FI_DOMAIN+'/federation"\n'+
+  'AUTH_SERVER="http://'+process.env.FI_DOMAIN+'/auth"\n'+
   'SIGNING_KEY="'+process.env.SIGNING_ACCOUNT+'"\n';
 
 // stellar.toml
 app.get('/.well-known/stellar.toml', function (req, res) {
-  console.log('get stellar.toml', req, res)
+  //console.log('get stellar.toml', req, res)
   res.set('Content-Type', 'text/x-toml');
   res.set('Access-Control-Allow-Origin', '*');
   res.send(stellarToml);

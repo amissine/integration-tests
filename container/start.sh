@@ -18,10 +18,17 @@ function download_all() {
   if [ "$BRIDGE_VERSION" == "master" ]
   then
     export MONOREPO=$GOPATH/src/github.com/stellar/go
-    mkdir -p $MONOREPO
-    #git clone https://github.com/stellar/go $MONOREPO
-    git clone https://github.com/amissine/go $MONOREPO
-    cd $MONOREPO
+    if [ -d $MONOREPO ]; then  # This never happens; but to force CLONING,
+      echo ===== PULLING ===== # we must update this file each time we 
+      cd $MONOREPO             # update $MONOREPO.
+      git pull origin master
+    else
+      echo ===== CLONING =====
+      mkdir -p $MONOREPO
+      #git clone https://github.com/stellar/go $MONOREPO
+      git clone https://github.com/amissine/go $MONOREPO
+      cd $MONOREPO
+    fi
     dep ensure -v
     go build -v ./services/bridge
     go build -v ./services/compliance

@@ -21,8 +21,8 @@ docker build ./container -t container
 # }}}1
 
 # build cluster
-export FI1_DOMAIN=fi1 # ${FI1_SUBDOMAIN}.fist.io
-export FI2_DOMAIN=fi2 # ${FI2_SUBDOMAIN}.fist.io
+export FI1_DOMAIN=hq.fi1.com # ${FI1_SUBDOMAIN}.fist.io
+export FI2_DOMAIN=hq.fi2.com # ${FI2_SUBDOMAIN}.fist.io
 
 docker-compose up &
 node monitor.js

@@ -31,7 +31,7 @@ badd +1 createAccount.js
 badd +1 checkAccount.js
 badd +9 package.json
 badd +1 .notravis.yml
-badd +1 https-proxy.js
+badd +10 https-proxy.js
 argglobal
 silent! argdel *
 $argadd .travis.yml
@@ -415,11 +415,11 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 18 - ((10 * winheight(0) + 5) / 11)
+let s:l = 13 - ((3 * winheight(0) + 5) / 11)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-18
+13
 normal! 0
 lcd ~/product/integration-tests
 wincmd w
@@ -453,7 +453,7 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 21 - ((10 * winheight(0) + 5) / 11)
+let s:l = 21 - ((9 * winheight(0) + 5) / 11)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
