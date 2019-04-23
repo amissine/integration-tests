@@ -17,7 +17,11 @@ export class Test {
   }
 
   printError(error) {
-    console.error(this.testName, error.response.data)
+    console.error(
+      this.testName, 
+      error.response.data,
+      error.response.data.extras ? error.response.data.extras.result_codes : '.'
+    )
   }
 
   getStatus() {

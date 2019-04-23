@@ -4,8 +4,8 @@ import {XlmPaymentTest} from './xlm_payment_test';
 
 let tests = [
   new CreditPaymentTest(),
-  new PendingTest(),
-  new XlmPaymentTest(),
+//  new PendingTest(),
+//  new XlmPaymentTest(),
 ];
 
 // testName => testObject map

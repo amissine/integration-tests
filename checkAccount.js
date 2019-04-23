@@ -11,7 +11,7 @@ server.loadAccount(accountPubKey)
   .then(() => e || console.log('Found Stellar account', accountPubKey))
 
 function createAccount (error) {
-  console.error(e = error)
+  console.error(e = error, '=== The account is now being created ===')
 
   const addr =
     `https://friendbot.stellar.org?addr=${encodeURIComponent(accountPubKey)}`

@@ -18,7 +18,7 @@ function download_all() {
   if [ "$BRIDGE_VERSION" == "master" ]
   then
     export MONOREPO=$GOPATH/src/github.com/stellar/go
-    if [ -d $MONOREPO ]; then  # This never happens; but to force CLONING,
+    if [ -d $MONOREPO ]; then  # This never happens; to force CLONING,
       echo ===== PULLING ===== # we must update this file each time we 
       cd $MONOREPO             # update $MONOREPO.
       git pull origin master

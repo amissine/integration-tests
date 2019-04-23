@@ -29,7 +29,12 @@ const map = {
   'hq.fi2.com':'http://localhost:9000'
 }
 
-if (process.argv[4] === 'UseHTTPS') {
+if (!pkfile && !certfile) {
+  http.createServer(
+    (req, res) => proxy.web(req, res, { target: map[req.headers.host] })
+  ).listen(80)
+}
+else {
   https.createServer(
     {
       key: fs.readFileSync(pkfile, 'utf8'),
@@ -37,9 +42,4 @@ if (process.argv[4] === 'UseHTTPS') {
     },
     (req, res) => proxy.web(req, res, { target: map[req.headers.host] })
   ).listen(443)
-}
-else {
-  http.createServer(
-    (req, res) => proxy.web(req, res, { target: map[req.headers.host] })
-  ).listen(80)
 }

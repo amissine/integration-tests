@@ -12,7 +12,6 @@ var fis = [
   {
     url: "http://localhost:9000/tests",
     online: false,
-    prefix: 'FI2 ',
     tests: null
   }
 ];
@@ -22,7 +21,7 @@ function checkStatus() {
   getTestsStatus(fis[0]);
   getTestsStatus(fis[1]);
 
-  // If both FI1 are online, start timeout
+  // If both FIs are online, start timeout
   if (fis[0].online && fis[1].online) {
     var allSuccess = true;
     var allFinished = true;

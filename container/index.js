@@ -43,7 +43,7 @@ app.get('/federation', function (req, res) {
   res.set('Content-Type', 'application/json');
   res.set('Access-Control-Allow-Origin', '*');
 
-  let destination = req.query.q.split('*');
+  let destination = req.query.q.split('*'); // * is %2A
   let testName = destination[0];
   let test = tests[testName];
   test.getFederation(req, res);
