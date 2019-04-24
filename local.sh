@@ -1,4 +1,5 @@
-# Run this script when not using travis
+# Run this script when not using travis.
+# Don't forget to kill node processes when done.
 
 sudo node https-proxy.js $1 $2 &
 
